@@ -19,7 +19,17 @@ else:
     sys.exit(1)
 
 URL = f"http://{IP}/DCIM/{DCIM}"
-response = requests.get(URL)
+
+try:
+    response = requests.get(URL, timeout=5)
+except requests.exceptions.Timeout:
+    print("The request timed out")
+    sys.exit(1)
+except requests.exceptions.RequestException as e:
+    print("An error occurred:", e)
+    sys.exit(1)
+
+
 files = response.json()["files"]
 
 files_count = len(files)
