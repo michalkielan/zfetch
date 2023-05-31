@@ -37,7 +37,7 @@ for i in range(0, files_count):
     file = files[i]
     print(f"\nDownload: {file} {i+1}/{files_count}")
     if pathlib.Path(file).is_file():
-        print("File f{file} exists")
+        print(f"File {file} exists")
         continue
     url = f"{URL}/{file}"
     response = wget.download(url)
