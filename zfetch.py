@@ -39,5 +39,5 @@ for i in range(0, files_count):
     if pathlib.Path(file).is_file():
         print("File f{file} exists")
         continue
-    url = f"http://{IP}/DCIM/{DCIM}/{file}"
+    url = f"{URL}/{file}"
     response = wget.download(url)
