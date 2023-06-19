@@ -29,6 +29,10 @@ except requests.exceptions.RequestException as e:
     print("An error occurred:", e)
     sys.exit(1)
 
+if response.status_code == 404:
+    print(f"Directory '{DCIM}' not found")
+    sys.exit(1)
+
 
 files = response.json()["files"]
 
