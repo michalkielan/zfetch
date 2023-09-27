@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 """ Script to download video files from zcam cameras """
+import os
 import sys
 import wget
 import requests
@@ -8,6 +9,11 @@ import pathlib
 
 IP = "10.98.32.1"
 argc = len(sys.argv)
+
+try:
+    IP = os.environ["ZCAM_IP_ADDRESS"]
+except KeyError:
+    pass
 
 if argc == 2:
     DCIM = sys.argv[1]
