@@ -8,6 +8,7 @@ import requests
 import pathlib
 
 IP = "10.98.32.1"
+REMOVE_AFTER_DOWNLOAD = False
 argc = len(sys.argv)
 
 try:
@@ -50,4 +51,6 @@ for i in range(0, files_count):
         print(f"File {file} exists")
         continue
     url = f"{URL}/{file}"
-    response = wget.download(url)
+    wget.download(url)
+    if REMOVE_AFTER_DOWNLOAD is True:
+        requests.get(f"{url}?act=rm", timeout=5)
